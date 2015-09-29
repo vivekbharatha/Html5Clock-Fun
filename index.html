@@ -7,6 +7,13 @@
 <body>
 <canvas id="canvas" width="500" height="500"></canvas>
 <img id="vivekImage" />
+<select id="country"  onchange="renderTime()">
+  <option value="0">India</option>
+  <option value="4">Australia Central</option>
+  <option value="2.5">China</option>
+  <option value="3.5">Japan</option>
+  <option value="-9.5">NewYork</option>
+</select>
 <script type="text/javascript">
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -19,7 +26,11 @@
         ctx.shadowBlur = 11;
         ctx.setLineDash([]);
 
-        var now = new Date(),
+         var e = document.getElementById("country");
+		 var offset = e.options[e.selectedIndex].value;
+         var currentTime = new Date(),
+		
+		 now=new Date(currentTime.getTime() + offset * 3600 * 1000),
                 today = now.toDateString(),
                 time = now.toLocaleTimeString(),
                 hours = now.getHours(),
